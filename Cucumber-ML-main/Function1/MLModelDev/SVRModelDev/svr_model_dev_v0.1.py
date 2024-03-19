@@ -1,0 +1,116 @@
+"""
+Support Vector Regressor (SVR) Model Development
+Train & Test Percentages: 
+    Train set percentage: 83.09%
+    Test set percentage: 16.91%
+
+v0.1
+"""
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.svm import SVR
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
+
+# Load the dataset
+data_file = "./Datasets/final_wholesale_retail_dataset_v0.0.csv"
+dataset = pd.read_csv(data_file)
+
+# Display the first few rows of the dataset to get an overview
+print(dataset.head())
+
+# Separate independent (X) and dependent (y) variables
+X = dataset.iloc[:, :-2]  # Select all columns except the last two
+y = dataset.iloc[:, -2:]  # Select the last two columns
+
+# Display the first few rows of X and y
+print("\nIndependent variables (X):")
+print(X.head())
+
+print("\nDependent variables (y):")
+print(y.head())
+
+# One-Hot Encoding for the 'location' column
+encoder = OneHotEncoder(sparse_output=False)
+X_encoded = encoder.fit_transform(X[['location']])
+X_encoded_df = pd.DataFrame(X_encoded, columns=encoder.get_feature_names_out(['location']))
+
+## Simplify header names by keeping only city names
+X_encoded_df.columns = X_encoded_df.columns.str.split('_').str[-1]
+X.drop(columns=['location'], inplace=True)  # Drop the original 'location' column
+X = pd.concat([X, X_encoded_df], axis=1)  # Concatenate the encoded 'location' columns
+
+# Standardization
+scaler = StandardScaler()
+X = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+y = pd.DataFrame(scaler.fit_transform(y), columns=y.columns)
+
+# Display the first few rows of the updated X and y
+print("\nUpdated Independent variables (X) after encoding and standardization:")
+print(X.head())
+
+print("\nUpdated Dependent variables (y) after standardization:")
+print(y.head())
+
+# Train & Test Split
+years = X['year'].unique()
+print("\nUnique years:", years)
+
+## Get the highest year for the test set
+test_year = max(years)
+
+## Split the data into train and test based on the year column
+X_train = X[X['year'] != test_year]
+X_test = X[X['year'] == test_year]
+y_train = y[X['year'] != test_year]
+y_test = y[X['year'] == test_year]
+
+## Calculate the percentage of train and test set
+total_samples = len(X)
+train_samples = len(X_train)
+test_samples = len(X_test)
+
+train_percentage = (train_samples / total_samples) * 100
+test_percentage = (test_samples / total_samples) * 100
+
+print(f"Train set percentage: {train_percentage:.2f}%")
+print(f"Test set percentage: {test_percentage:.2f}%")
+
+
+# SVR Model Implementation for 'wholesale_price'
+svr_model_wholesale = SVR(kernel='rbf', C=1.0, epsilon=0.2)
+svr_model_wholesale.fit(X_train, y_train['wholesale_price'])
+
+# SVR Model Implementation for 'retail_price'
+svr_model_retail = SVR(kernel='rbf', C=1.0, epsilon=0.2)
+svr_model_retail.fit(X_train, y_train['retail_price'])
+
+# Predict 'wholesale_price' and 'retail_price' for the train and test sets
+y_train_pred_wholesale = svr_model_wholesale.predict(X_train)
+y_test_pred_wholesale = svr_model_wholesale.predict(X_test)
+y_train_pred_retail = svr_model_retail.predict(X_train)
+y_test_pred_retail = svr_model_retail.predict(X_test)
+
+# Calculate RMSE and R-squared for train and test sets for 'wholesale_price'
+train_rmse_wholesale = np.sqrt(mean_squared_error(y_train['wholesale_price'], y_train_pred_wholesale))
+test_rmse_wholesale = np.sqrt(mean_squared_error(y_test['wholesale_price'], y_test_pred_wholesale))
+train_r2_wholesale = r2_score(y_train['wholesale_price'], y_train_pred_wholesale)
+test_r2_wholesale = r2_score(y_test['wholesale_price'], y_test_pred_wholesale)
+
+# Calculate RMSE and R-squared for train and test sets for 'retail_price'
+train_rmse_retail = np.sqrt(mean_squared_error(y_train['retail_price'], y_train_pred_retail))
+test_rmse_retail = np.sqrt(mean_squared_error(y_test['retail_price'], y_test_pred_retail))
+train_r2_retail = r2_score(y_train['retail_price'], y_train_pred_retail)
+test_r2_retail = r2_score(y_test['retail_price'], y_test_pred_retail)
+
+print("\n'wholesale_price' - Train RMSE: {:.2f}".format(train_rmse_wholesale))
+print("'wholesale_price' - Test RMSE: {:.2f}".format(test_rmse_wholesale))
+print("'wholesale_price' - Train R-squared: {:.2f}".format(train_r2_wholesale))
+print("'wholesale_price' - Test R-squared: {:.2f}".format(test_r2_wholesale))
+
+print("\n'retail_price' - Train RMSE: {:.2f}".format(train_rmse_retail))
+print("'retail_price' - Test RMSE: {:.2f}".format(test_rmse_retail))
+print("'retail_price' - Train R-squared: {:.2f}".format(train_r2_retail))
+print("'retail_price' - Test R-squared: {:.2f}".format(test_r2_retail))

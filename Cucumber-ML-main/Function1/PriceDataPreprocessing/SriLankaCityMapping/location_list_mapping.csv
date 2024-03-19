@@ -1,0 +1,38 @@
+locations,neighbor1,neighbor2,neighbor3,neighbor4
+Polonnaruwa,Anuradapuraya,Trinco,Batticaloa,Matale
+Mannar,Kilinochchi,Mullathivu,Vavuniya,Anuradapuraya
+Kegalle,Kandy,Hanguranketha,Nuwara Eliya,Gampaha
+Meegoda,Colombo,Kaluthara,Rathnapura,Veyangoda
+Colombo,Gampaha,Kaluthara,Meegoda,Veyangoda
+Jaffna,Kilinochchi,Mullathivu,Vavuniya,Mannar
+Anuradapuraya,Polonnaruwa,Galenbidunuwewa,Thabuththegama,Trinco
+Ampara,Dehiattakandiya,Batticaloa,Monaragala,Thissamaharama
+Trinco,Anuradapuraya,Polonnaruwa,Batticaloa,Galenbidunuwewa
+Keppetipola,Badulla,Nuwara Eliya,Rathnapura,Monaragala
+Puttalam,Kurunegala,Nikaweratiya,Mannar,Anuradapuraya
+Veyangoda,Gampaha,Colombo,Kegalle,Kurunegala
+Badulla,Nuwara Eliya,Monaragala,Bandarawela,Keppetipola
+Kandy,Nuwara Eliya,Badulla,Kegalle,Hanguranketha
+Matara,Galle,Hambanthota,Rathnapura,Embilipitiya
+Thabuththegama,Anuradapuraya,Galenbidunuwewa,Kurunegala,Dabulla
+Hanguranketha,Kandy,Badulla,Nuwara Eliya,Kegalle
+Kaluthara,Colombo,Meegoda,Rathnapura,Gampaha
+Dehiattakandiya,Ampara,Polonnaruwa,Batticaloa,Badulla
+Galenbidunuwewa,Anuradapuraya,Thabuththegama,Polonnaruwa,Trinco
+Batticaloa,Ampara,Trinco,Polonnaruwa,Dehiattakandiya
+Kurunegala,Nikaweratiya,Matale,Kegalle,Gampaha
+Mullathivu,Kilinochchi,Mannar,Vavuniya,Jaffna
+Monaragala,Badulla,Ampara,Hambanthota,Bandarawela
+Dabulla,Matale,Polonnaruwa,Anuradapuraya,Kurunegala
+Rathnapura,Nuwara Eliya,Badulla,Kaluthara,Matara
+Hambanthota,Matara,Monaragala,Thissamaharama,Embilipitiya
+Gampaha,Colombo,Veyangoda,Kegalle,Kurunegala
+Vavuniya,Anuradapuraya,Mullathivu,Mannar,Trinco
+Bandarawela,Badulla,Keppetipola,Monaragala,Nuwara Eliya
+Matale,Dabulla,Kandy,Kurunegala,Dehiattakandiya
+Galle,Kaluthara,Matara,Hambanthota,Rathnapura
+Embilipitiya,Rathnapura,Hambanthota,Thissamaharama,Monaragala
+Kilinochchi,Jaffna,Mullathivu,Mannar,Vavuniya
+Nikaweratiya,Kurunegala,Puttalam,Thabuththegama,Anuradapuraya
+Nuwara Eliya,Kandy,Badulla,Kegalle,Rathnapura
+Thissamaharama,Hambanthota,Embilipitiya,Monaragala,Matara

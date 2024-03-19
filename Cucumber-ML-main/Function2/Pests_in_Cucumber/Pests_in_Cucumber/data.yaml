@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 5
+names: ['Aphids', 'Fruit fly', 'Pumpkin Beetle', 'Serpentine leafminer', 'Whitefly']
+
+roboflow:
+  workspace: aimit-qyweq
+  project: pests-in-cucumber-dxqdx
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/aimit-qyweq/pests-in-cucumber-dxqdx/dataset/4

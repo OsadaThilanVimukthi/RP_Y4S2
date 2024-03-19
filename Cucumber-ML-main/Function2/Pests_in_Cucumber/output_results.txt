@@ -1,0 +1,4 @@
+Predicted class: Pumpkin Beetle, Confidence: 0.2206
+Predicted class: Fruit fly, Confidence: 0.2653
+Predicted class: Fruit fly, Confidence: 0.2916
+Predicted class: Pumpkin Beetle, Confidence: 0.2956
